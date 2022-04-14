@@ -2266,7 +2266,9 @@ function fn_get_collections($params = [], $items_per_page = 0, $lang_code = CART
         $condition .= db_quote(' AND ?:collections.collection_id = ?i', $params['collection_id']);
     }
 
-
+    if (!empty($params['user_id'])) {
+        $condition .= db_quote(' AND ?:collections.user_id = ?i', $params['user_id']);
+    }
 
     if (!empty($params['status'])) {
         $condition .= db_quote(' AND ?:collections.status = ?s', $params['status']);
