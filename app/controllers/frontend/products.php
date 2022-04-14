@@ -254,6 +254,8 @@ if ($mode == 'search') {
     Tygh::$app['view']->assign('product_id', $_REQUEST['product_id']);
     Tygh::$app['view']->assign('product_notification_enabled', $product_notification_enabled);
     Tygh::$app['view']->assign('product_notification_email', $product_notification_email);
+} elseif ($mode == 'collections') {
+    fn_print_die('end');
 }
 
 function fn_add_product_to_recently_viewed($product_id, $max_list_size = MAX_RECENTLY_VIEWED)
