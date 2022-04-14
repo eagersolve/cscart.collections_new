@@ -488,6 +488,10 @@ $schema = [
                     'alt' => 'product_options.inventory,product_options.exceptions,products.update,products.m_update,products.add',
                     'position' => 200,
                 ],
+                'collections' => [
+                    'href' => 'products.manage_collections',
+                    'position' => 250,
+                ],
                 'features' => [
                     'href' => 'product_features.manage',
                     'position' => 300,
