@@ -258,9 +258,11 @@ if ($mode == 'search') {
   
     Tygh::$app['session']['continue_url'] = "products.collections";
 
+
     $params = $_REQUEST;
 
     $params['user_id'] = Tygh::$app['session']['auth']['user_id'];
+
 
     if (Registry::get('settings.General.show_products_from_subcategories') == 'Y') {
         $params['subcats'] = 'Y';
@@ -281,8 +283,9 @@ if ($mode == 'search') {
     $collection_data = [];
     $collection_id = !empty($_REQUEST['collection_id']) ? $_REQUEST['collection_id'] : 0;
     $collection_data = fn_get_collection_data ($collection_id, CART_LANGUAGE);
+    
 
-    // fn_print_die($collection_data);
+    // fn_print_die($collection);
 
         if (empty($collection_data)) {
             return [CONTROLLER_STATUS_NO_PAGE];
@@ -291,7 +294,7 @@ if ($mode == 'search') {
 
     Tygh::$app['view']->assign('collection_data', $collection_data);
 
-    fn_add_breadcrumb([__('collections') , $collection_data['collection']]);
+    fn_add_breadcrumb($collection_data['collection']);
 
 
     $params = $_REQUEST;
@@ -327,11 +330,12 @@ if ($mode == 'search') {
     ]);
 
     $selected_layout = fn_get_products_layout($_REQUEST);
-    // fn_print_die($products);
+    // fn_print_die($search);
     Tygh::$app['view']->assign('products', $products);
     Tygh::$app['view']->assign('search', $search);
     Tygh::$app['view']->assign('selected_layout', $selected_layout);
 }
+
 
 
 function fn_add_product_to_recently_viewed($product_id, $max_list_size = MAX_RECENTLY_VIEWED)
